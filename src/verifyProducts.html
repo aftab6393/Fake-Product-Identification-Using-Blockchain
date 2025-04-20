@@ -9,76 +9,104 @@
 	<link rel="stylesheet" href="css/style.css">
 	<style>
 		body {
-		  margin: 0;
-		  font-family: Arial, sans-serif;
-		  background-color: rgb(213, 228, 228);
-		  /* background-image: url('background-image.jpg');  */
-		   /* background: linear-gradient(to right, #4acbf3, #9dd1f3);  */
+		  font-family: 'Roboto', sans-serif;
+		  background: linear-gradient(to right, #4acbf3, #9dd1f3);
+
 		}
-		
+	
+		.navbar {
+		  background: #111;
+		}
+	
+		.navbar-brand {
+		  color: #f8b400 !important;
+		  font-weight: 700;
+		  font-size: 22px;
+		}
+	
+		.section-heading {
+		  color: #007bff;
+		  font-weight: 600;
+		  margin-bottom: 20px;
+		}
+	
+		.card {
+		  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+		  border-radius: 12px;
+		}
+	
+		#qr-reader {
+		  border: 3px dashed #007bff;
+		  border-radius: 10px;
+		  padding: 10px;
+		  margin-bottom: 20px;
+		}
+	
+		.btn-warning {
+		  padding: 10px 20px;
+		  font-size: 16px;
+		  border-radius: 8px;
+		}
+	
+		footer {
+		  background-color: #111;
+		  color: #fff;
+		  text-align: center;
+		  padding: 20px 0;
+		  margin-top: 40px;
+		}
+	
+		table th {
+		  background: #0f0f0f;
+		  color: white;
+		}
+	
+		table td {
+		  background: #f2f9ff;
+		}
 	  </style>
 	</head>
 	<body>
-	<section class="ftco-section">
-		<div class="container-fluid px-md-5">
-			<div class="row justify-content-between">
-				<div class="col-md-8 order-md-last">
-					<div class="row">
-						<div class="col-md-6 text-center">
-							<a class="navbar-brand" href="index.html">Fake Product Identification <span>through Blockchain</span></a>
-						</div>
-						<div class="col-md-6 d-md-flex justify-content-end mb-md-0 mb-3">
-							<form action="#" class="searchform order-lg-last">
-			          
-			        </form>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 d-flex">
-					<div class="social-media">
-		    		
-	        </div>
-				</div>
-			</div>
+	
+	  <!-- Navbar -->
+	  <nav class="navbar navbar-expand-lg navbar-dark">
+		<div class="container">
+		  <a class="navbar-brand" href="index.html">Fake Product Identification <span>through Blockchain</span></a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
+			<span class="fa fa-bars"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="ftco-nav">
+			<ul class="navbar-nav ml-auto">
+			  <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+			  <li class="nav-item"><a href="manufacturer.html" class="nav-link">Manufacturer</a></li>
+			  <li class="nav-item"><a href="seller.html" class="nav-link">Seller</a></li>
+			  <li class="nav-item active"><a href="consumer.html" class="nav-link">Consumer</a></li>
+			</ul>
+		  </div>
 		</div>
-		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container-fluid">
-	    
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="fa fa-bars"></span> Menu
-	      </button>
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav m-auto">
-	        	<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-			  	<li class="nav-item "><a href="manufacturer.html" class="nav-link">Manufacturer</a></li>
-	        	<li class="nav-item"><a href="seller.html" class="nav-link">Seller</a></li>
-	          	<li class="nav-item"><a href="consumer.html" class="nav-link">Consumer</a></li>
-	        </ul>
-	      </div>
-	    </div>
 	  </nav>
     <!-- END nav -->
 	
-	<section>
-        <div class="container">
-            <h2>Verify Products</h2>
-              
-			<section>
-				<div class="container-fluid">
-					<center>
-						<div id="qr-reader" style="width:300px"></div>
-						<div id="qr-reader-results"></div>
-					</center>
-				</div>
-			</section>
+	<div class="container mt-5">
+		<div class="card p-4">
+		  <h2 class="section-heading text-center">Verify Product Authenticity</h2>
+	
+		  <!-- QR Scanner -->
+		  <div class="text-center">
+			<div id="qr-reader" style="width:300px; margin: 0 auto;"></div>
+			<div id="qr-reader-results" class="mt-3 text-info font-weight-bold"></div>
+		  </div>
 			  
-              <div class="form-group">
-				<label for="productSN">Product SN:</label>
-                <input disabled type="text" class="form-control" id="productSN" placeholder="Enter Product SN" name="productSN">
+		  <form class="mt-4">
+			<div class="form-group">
+			  <label for="productSN">Product SN:</label>
+			  <input disabled type="text" class="form-control" id="productSN" placeholder="Scanned Product SN">
+			</div>
                 
-				<label for="consumerCode">Consumer Code</label>
-                <input type="text" class="form-control" id="consumerCode" placeholder="Enter Consumer Code" name="consumerCode">
-              </div>
+			<div class="form-group">
+				<label for="consumerCode">Consumer Code:</label>
+				<input type="text" class="form-control" id="consumerCode" placeholder="Enter your consumer code">
+			  </div>
               
               <button type="submit" class="btn btn-warning btn-register" id="register">Get Product Status</button>
           </div>
@@ -149,7 +177,3 @@
   </script>
   </body>
 </html>
-
-
-
-

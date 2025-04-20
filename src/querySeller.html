@@ -7,96 +7,110 @@
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/style.css">
-  <style>
-		body {
-		  margin: 0;
-		  font-family: Arial, sans-serif;
-		  background-color: rgb(213, 228, 228);
-		  /* background-image: url('background-image.jpg');  */
-		   /* background: linear-gradient(to right, #4acbf3, #9dd1f3);  */
-		}
-		
-	  </style>
+	<style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #4acbf3, #9dd1f3);
+            color: #333;
+        }
+        .navbar {
+            background: #343a40;
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .form-group input {
+            border-radius: 10px;
+            padding: 10px;
+        }
+        .btn-register {
+            background: #ff9800;
+            color: white;
+            font-weight: bold;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+        .btn-register:hover {
+            background: #e68900;
+        }
+        .table {
+            background: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .table th, .table td {
+            padding: 15px;
+            text-align: center;
+        }
+        .table-hover tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #343a40;
+            color: white;
+            margin-top: 30px;
+        }
+    </style>
 	</head>
 	<body>
-	<section class="ftco-section">
-		<div class="container-fluid px-md-5">
-			<div class="row justify-content-between">
-				<div class="col-md-8 order-md-last">
-					<div class="row">
-						<div class="col-md-6 text-center">
-							<a class="navbar-brand" href="index.html">Fake Product Identification <span>through Blockchain</span></a>
-						</div>
-						<div class="col-md-6 d-md-flex justify-content-end mb-md-0 mb-3">
-							<form action="#" class="searchform order-lg-last">
-			          
-			        </form>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 d-flex">
-					<div class="social-media">
-		    		
-	        </div>
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<div class="container">
+				<a class="navbar-brand" href="#">Fake Product Identification</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="manufacturer.html">Manufacturer</a></li>
+						<li class="nav-item"><a class="nav-link" href="seller.html">Seller</a></li>
+						<li class="nav-item"><a class="nav-link" href="consumer.html">Consumer</a></li>
+					</ul>
 				</div>
 			</div>
-		</div>
-		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container-fluid">
-	    
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="fa fa-bars"></span> Menu
-	      </button>
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav m-auto">
-	        	<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-			  	<li class="nav-item "><a href="manufacturer.html" class="nav-link">Manufacturer</a></li>
-	        	<li class="nav-item"><a href="seller.html" class="nav-link">Seller</a></li>
-	          	<li class="nav-item"><a href="consumer.html" class="nav-link">Consumer</a></li>
-	        </ul>
-	      </div>
-	    </div>
-	  </nav>
-    <!-- END nav -->
+		</nav>
 	
-	<section>
-        <div class="container">
-            <h2>Query Sellers</h2>
-
-              <div class="form-group">
-                <label for="email">Manufacturer Code</label>
-                <input type="email" class="form-control" id="manufacturerCode" placeholder="Enter manufacturer Code" name="manufacturerCode">
-              </div>
-              
-              <button type="submit" class="btn btn-warning btn-register" id="register">Get Sellers</button>
-          </div>
+		<section class="container mt-5">
+			<h2 class="text-center mb-4">Query Sellers</h2>
+			<div class="row justify-content-center">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="manufacturerCode">Manufacturer Code</label>
+						<input type="text" class="form-control" id="manufacturerCode" placeholder="Enter Manufacturer Code">
+					</div>
+					<button class="btn btn-register btn-block" id="register">Get Sellers</button>
+				</div>
+			</div>
+		</section>
+	<section class="container mt-5">
+        <h2 class="text-center">Sellers</h2>
+        <p class="text-center">Following are the sellers registered through Blockchain Network</p>
+        <table class="table table-hover">
+            <thead class="bg-dark text-white">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Brand</th>
+                    <th>Code</th>
+                    <th>Number</th>
+                    <th>Manager</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody id="logdata">
+                <!-- Dynamic Content -->
+            </tbody>
+        </table>
+        <center><p>Your address is <b id="add"></b></p></center>
     </section>
 
-
-	</section>
-    <section>
-        <div class="container">
-            <h2>Sellers</h2>
-            <p>Following are the sellers registered through Blockchain Network</p>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Brand</th>
-                        <th>Code</th>
-                        <th>Number</th>
-                        <th>Manager</th>
-                        <th>Address</th>
-                    </tr>
-                </thead>
-                <tbody id="logdata">
-
-                </tbody>
-            </table>
-            <center><p>Your address is <b id="add"></b></p></center>
-        </div>
-    </section>
+	<footer>
+        &copy; 2025 Fake Product Identification | All Rights Reserved
+    </footer>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="js/popper.js"></script>
@@ -107,7 +121,3 @@
   <script src="js/sellerDataApp.js"></script>
   </body>
 </html>
-
-
-
-

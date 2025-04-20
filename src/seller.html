@@ -1,73 +1,106 @@
 <!doctype html>
 <html lang="en">
-  <head>
-  	<title>Fake Product Identification</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/style.css">
-	<style>
-		body {
-		  margin: 0;
-		  font-family: Arial, sans-serif;
-		  background-color: rgb(213, 228, 228);
-		  /* background-image: url('background-image.jpg');  */
-		   /* background: linear-gradient(to right, #4acbf3, #9dd1f3);  */
-		}
-		
-	  </style>
-	</head>
-	<body>
-	<section class="ftco-section">
-		<div class="container-fluid px-md-5">
-			<div class="row justify-content-between">
-				<div class="col-md-8 order-md-last">
-					<div class="row">
-						<div class="col-md-6 text-center">
-							<a class="navbar-brand" href="index.html">Fake Product Identification <span>through Blockchain</span></a>
-						</div>
-						<div class="col-md-6 d-md-flex justify-content-end mb-md-0 mb-3">
-							<form action="#" class="searchform order-lg-last">
-			          
-			        </form>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 d-flex">
-					<div class="social-media">
-		    		
-	        </div>
-				</div>
-			</div>
-		</div>
-		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container-fluid">
-	    
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="fa fa-bars"></span> Menu
-	      </button>
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav m-auto">
-	        	<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-	        	<li class="nav-item"><a href="sellProductSeller.html" class="nav-link">Sell Product To Consumer</a></li>
-            <li class="nav-item"><a href="queryProducts.html" class="nav-link">Products For sale</a></li>
-	        </ul>
-	      </div>
-	    </div>
-	  </nav>
-    <!-- END nav -->
-	
-    <section>
-      <div class="container">
-        <h2>
-        Seller
-        </h2>
-        <h3>
-        Go to navigation bar to perform operations.
-        </h3>
-      </section>
+<head>
+  <title>Seller Dashboard | Fake Product Identification</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet'>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to right, #4acbf3, #9dd1f3);
+      color: #333;
+    }
+    .navbar {
+      background: #222 !important;
+    }
+    .navbar-brand {
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff !important;
+    }
+    .nav-link {
+      color: #fff !important;
+      font-size: 18px;
+      transition: color 0.3s ease;
+    }
+    .nav-link:hover {
+      color: #f9c74f !important;
+    }
+    .container {
+      text-align: center;
+      padding: 80px 20px;
+    }
+    h2 {
+      font-size: 42px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    h3 {
+      font-size: 22px;
+      color: #f8f9fa;
+      margin-bottom: 30px;
+    }
+    .btn-custom {
+      font-size: 18px;
+      padding: 10px 30px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      margin: 10px;
+    }
+    .btn-custom:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    footer {
+      background: #222;
+      color: #ccc;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
 
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">Fake Product Identification</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
+        <span class="fa fa-bars"></span> Menu
+      </button>
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav m-auto">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="sellProductSeller.html" class="nav-link">Sell Product</a></li>
+          <li class="nav-item"><a href="queryProducts.html" class="nav-link">View Products</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN SECTION -->
+  <section>
+    <div class="container">
+      <h2>Seller Dashboard</h2>
+      <h3>What would you like to do?</h3>
+      <a href="sellProductSeller.html" class="btn btn-warning btn-custom">Sell Product to Consumer</a>
+      <a href="queryProducts.html" class="btn btn-light btn-custom">View Products for Sale</a>
+    </div>
+  </section>
+<br><br><br>
+<br>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Fake Product Identification.</p>
+  </footer>
+
+  <!-- SCRIPTS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -75,9 +108,6 @@
   <script src="js/web3.min.js"></script>
   <script src="js/truffle-contract.js"></script>
   <script src="js/sellerDataApp.js"></script>
-  </body>
+
+</body>
 </html>
-
-
-
-

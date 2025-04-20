@@ -10,63 +10,73 @@
 	<style>
 		body {
 		  margin: 0;
-		  font-family: Arial, sans-serif;
-		  background-color: rgb(213, 228, 228);
-		  /* background-image: url('background-image.jpg');  */
-		   /* background: linear-gradient(to right, #4acbf3, #9dd1f3);  */
+		  font-family: 'Roboto', sans-serif;
+		  background: linear-gradient(to right, #4acbf3, #007bff);
+		  color: #333;
 		}
-		
-	  </style>
+		.navbar {
+		  background: rgba(0, 0, 0, 0.9);
+		  padding: 15px;
+		}
+		.navbar-brand {
+		  font-size: 24px;
+		  font-weight: bold;
+		  color: #f8b400;
+		}
+		.container {
+		  background: #fff;
+		  padding: 30px;
+		  border-radius: 15px;
+		  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+		  max-width: 600px;
+		  margin: 20px auto;
+		  text-align: center;
+		}
+		button {
+		  background-color: #f8b400;
+		  color: white;
+		  border: none;
+		  padding: 12px 20px;
+		  font-size: 18px;
+		  border-radius: 8px;
+		  cursor: pointer;
+		  transition: 0.3s;
+		  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+		}
+		button:hover {
+		  background-color: #d99a00;
+		  transform: translateY(-2px);
+		}
+	</style>
 	</head>
 	<body>
-	<section class="ftco-section">
-		<div class="container-fluid px-md-5">
-			<div class="row justify-content-between">
-				<div class="col-md-8 order-md-last">
-					<div class="row">
-						<div class="col-md-6 text-center">
-							<a class="navbar-brand" href="index.html">Fake Product Identification <span>through Blockchain</span></a>
-						</div>
-						<div class="col-md-6 d-md-flex justify-content-end mb-md-0 mb-3">
-							<form action="#" class="searchform order-lg-last">
-			          
-			        </form>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 d-flex">
-					<div class="social-media">
-		    		
-	        </div>
-				</div>
-			</div>
-		</div>
-		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container-fluid">
-	    
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="fa fa-bars"></span> Menu
-	      </button>
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav m-auto">
-	        	<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-	        	<li class="nav-item"><a href="consumerPurchaseHistory.html" class="nav-link">Consumer Purchase History</a></li>
+	<nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">Fake Product Identification <span>through Blockchain</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
+          <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="consumerPurchaseHistory.html" class="nav-link">Consumer Purchase History</a></li>
             <li class="nav-item"><a href="verifyProducts.html" class="nav-link">Product Verification</a></li>
-	        </ul>
-	      </div>
-	    </div>
-	  </nav>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
     <section>
       <div class="container">
-        <h2>
-          Consumer
-        </h2>
-        <h3>
-          Go to navigation bar to perform operations.
-        </h3>
+        <h2 style="color: #007bff;">Consumer</h2>
+        <h3 style="color: #555;">Go to navigation bar to perform operations.</h3>
+        <button onclick="location.href='verifyProducts.html'">Verify a Product</button>
+      </div>
     </section>
-    <!-- END nav -->
+
+    <footer style="background-color: #222; color: #fff; text-align: center; padding: 20px 0;">
+      <p>&copy; 2024 Fake Product Identification. All Rights Reserved.</p>
+    </footer>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="js/popper.js"></script>
@@ -77,7 +87,3 @@
   <script src="js/sellerDataApp.js"></script>
   </body>
 </html>
-
-
-
-
