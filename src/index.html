@@ -8,65 +8,298 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
+      :root {
+        --primary: #2563eb;
+        --primary-soft: #e0ecff;
+        --accent: #f97316;
+        --accent-soft: #fff4e5;
+        --text-main: #111827;
+        --text-muted: #6b7280;
+        --border-subtle: #e5e7eb;
+        --bg-page: #f3f4f6;
+        --bg-card: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
       body {
         margin: 0;
         font-family: 'Roboto', sans-serif;
-        background: linear-gradient(to right, #4acbf3, #9dd1f3);
+        background-color: var(--bg-page);
+        color: var(--text-main);
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
       }
+
+      /* NAVBAR – colorful gradient, outstanding but still clean */
       .navbar {
-        background: rgba(0, 0, 0, 0.8) !important;
-        padding: 15px;
+        background-image: linear-gradient(90deg, #2563eb, #4f46e5, #ec4899);
+        padding: 12px 20px;
+        box-shadow: 0 6px 20px rgba(15, 23, 42, 0.25);
+        position: sticky;
+        top: 0;
+        z-index: 20;
       }
+
+      .navbar::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 -1px 0;
+        height: 3px;
+        background: linear-gradient(90deg, rgba(255,255,255,0.5), transparent);
+        opacity: 0.45;
+      }
+
+      .navbar-brand {
+        font-weight: 600;
+        font-size: 1.05rem;
+        color: #ffffff !important;
+        display: flex;
+        align-items: center;
+      }
+
+      .navbar-brand img {
+        border-radius: 12px;
+        margin-right: 10px;
+        box-shadow: 0 0 12px rgba(15, 23, 42, 0.5);
+        background-color: #ffffff;
+      }
+
       .navbar-brand span {
-        color: #f8b400;
+        color: #fffbeb;
       }
-      .hero {
-        text-align: center;
-        padding: 80px 20px;
-        color: white;
-      }
-      .hero h1 {
-        font-size: 36px;
-        margin-bottom: 20px;
-      }
-      .connect-button {
-        background-color: #f8b400;
-        color: white;
-        border: none;
-        padding: 12px 24px;
-        font-size: 18px;
-        border-radius: 25px;
-        cursor: pointer;
-        transition: 0.3s;
-      }
-      .connect-button:hover {
-        background-color: #d99a00;
-      }
-      footer {
-        background-color: #222;
-        color: #fff;
-        text-align: center;
-        padding: 20px 0;
+
+      .navbar-nav .nav-link {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #e5e7eb !important;
+        padding: 6px 12px !important;
+        margin-left: 6px;
+        border-radius: 999px;
         position: relative;
-        bottom: 0;
+        transition: background-color 0.18s ease, color 0.18s ease, transform 0.15s ease;
+      }
+
+      .navbar-nav .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 4px;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background: rgba(255,255,255,0.9);
+        border-radius: 999px;
+        transition: width 0.2s ease;
+      }
+
+      .navbar-nav .nav-link:hover,
+      .navbar-nav .nav-link:focus {
+        background-color: rgba(15, 23, 42, 0.2);
+        color: #ffffff !important;
+        transform: translateY(-1px);
+      }
+
+      .navbar-nav .nav-link:hover::after,
+      .navbar-nav .nav-link:focus::after {
+        width: 50%;
+      }
+
+      .navbar-toggler {
+        border: none;
+      }
+
+      .navbar-toggler .fa-bars {
+        color: #ffffff;
+        font-size: 1.2rem;
+      }
+
+      /* HERO */
+      .hero {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 16px 32px;
+      }
+
+      .hero-inner {
+        max-width: 900px;
         width: 100%;
+        background-color: var(--bg-card);
+        border-radius: 22px;
+        padding: 32px 22px 28px;
+        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+        border: 1px solid #e5e7eb;
+        text-align: center;
       }
-      .footer-links a {
-        color: #f8b400;
-        margin: 0 10px;
-        text-decoration: none;
-        transition: 0.3s;
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background-color: var(--primary-soft);
+        color: #1d4ed8;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        margin-bottom: 12px;
       }
-      .footer-links a:hover {
-        color: #d99a00;
+
+      .hero-badge i {
+        margin-right: 6px;
       }
+
+      .hero h1 {
+        font-size: 2rem;
+        margin-bottom: 12px;
+        line-height: 1.4;
+      }
+
+      @media (min-width: 768px) {
+        .hero h1 {
+          font-size: 2.3rem;
+        }
+      }
+
+      .hero-highlight {
+        color: var(--primary);
+      }
+
+      .hero-subtitle {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        max-width: 620px;
+        margin: 0 auto 22px;
+      }
+
+      .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 24px;
+        font-size: 0.82rem;
+      }
+
+      .hero-chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background-color: #f9fafb;
+        border: 1px solid var(--border-subtle);
+        color: var(--text-muted);
+      }
+
+      .hero-chip i {
+        margin-right: 6px;
+        color: var(--primary);
+      }
+
+      /* CONNECT BUTTON */
+      .connect-button {
+        background-image: linear-gradient(135deg, var(--accent), #fbbf24);
+        color: #1f2933;
+        border: none;
+        padding: 12px 26px;
+        font-size: 16px;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background-position 0.25s ease;
+        background-size: 200% 100%;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 8px;
+      }
+
+      .connect-button i {
+        margin-right: 8px;
+      }
+
+      .connect-button:hover {
+        transform: translateY(-1px);
+        background-position: 100% 0;
+        box-shadow: 0 12px 24px rgba(249, 115, 22, 0.3);
+      }
+
+      .connect-button:active {
+        transform: translateY(0);
+        box-shadow: 0 6px 16px rgba(249, 115, 22, 0.25);
+      }
+
+      .connect-helper {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      .footer-modern {
+  background: #111;
+  padding: 35px 10px;
+  text-align: center;
+  color: #d1d5db;
+  margin-top: 40px;
+  border-top: 3px solid rgba(255,255,255,0.1);
+}
+
+.footer-modern p {
+  margin: 0;
+  font-size: 16px;
+  color: #f3f4f6;
+  margin-bottom: 10px;
+}
+
+.footer-links {
+  margin-bottom: 15px;
+}
+
+.footer-links a {
+  margin: 0 10px;
+  color: #f3f4f6;
+  font-size: 14px;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #fbbf24;
+}
+
+
+.contact-icons {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 2px;
+}
+
+.contact-icons .icon img {
+  width: 38px;
+  height: 38px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.contact-icons .icon:hover img {
+  transform: scale(1.2);
+  filter: brightness(1) invert(0);
+}
+
     </style>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html">
-          <img src="logo.png" width="50" height="50" alt="FakeProduct.com"> Fake Product Identification  <span></span>
+          <img src="logo.png" width="50" height="50" alt="FakeProduct.com">
+          Fake Product Identification  <span></span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
           <span class="fa fa-bars"></span>
@@ -83,11 +316,84 @@
     </nav>
 
     <section class="hero">
-      <h1>Welcome to Fake Product Identification using Blockchain</h1>
-      <button class="connect-button" onclick="connectMetaMask()">Connect to MetaMask</button>
+      <div class="hero-inner">
+        <!-- Your main heading text (unchanged) -->
+        <div class="hero-badge">
+          <i class="fa fa-shield"></i> Blockchain-based protection
+        </div>
+
+        <h1>
+          <span class="hero-highlight">Welcome to</span><br>
+          Fake Product Identification using Blockchain
+        </h1>
+
+        <!-- UX subtitle (extra info, doesn't change your core data) -->
+        <p class="hero-subtitle">
+          Easily connect your wallet and start verifying products on a secure, tamper-proof blockchain network.
+        </p>
+
+        <!-- Chips for modern look -->
+        <div class="hero-meta">
+          <div class="hero-chip">
+            <i class="fa fa-qrcode"></i> Scan &amp; verify products
+          </div>
+          <div class="hero-chip">
+            <i class="fa fa-lock"></i> Immutable blockchain records
+          </div>
+          <div class="hero-chip">
+            <i class="fa fa-users"></i> Manufacturer · Seller · Consumer
+          </div>
+        </div>
+
+        <!-- Original button & function (same text & behavior) -->
+        <button class="connect-button" onclick="connectMetaMask()">
+          <i class="fa fa-plug"></i>
+          Connect to MetaMask
+        </button>
+        <div class="connect-helper">
+          <!-- Make sure MetaMask is installed and unlocked in your browser. -->
+        </div>
+      </div>
     </section>
 
+    <footer class="footer-modern">
+  <p>&copy; 2025 Fake Product Identification. All Rights Reserved.</p>
+
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+    <a href="#">Contact Us</a>
+
+    <div class="contact-icons">
+
+      <!-- Phone -->
+      <a href="tel:+916393571XXX" class="icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png" alt="Phone" />
+      </a>
+
+      <!-- Email -->
+      <a href="mailto:aayan2231092@gmail.com" class="icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" />
+      </a>
+
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/aftab-ansari-560b07257/" target="_blank" rel="noopener noreferrer" class="icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" />
+      </a>
+
+      <!-- GitHub -->
+      <a href="https://github.com/aftab6393" target="_blank" rel="noopener noreferrer" class="icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub" />
+      </a>
+    </div>
+    
+  </div>
+
   
+  </div>
+</footer>
+
+
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
@@ -95,30 +401,18 @@
     <script src="js/truffle-contract.js"></script>
     <script>
       async function connectMetaMask() {
-    if (typeof window.ethereum !== "undefined") {
-        try {
+        if (typeof window.ethereum !== "undefined") {
+          try {
             const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
             alert(`Connected to MetaMask with account: ${accounts[0]}`);
-        } catch (error) {
+          } catch (error) {
             alert("Connection request rejected. Please accept the request in MetaMask.");
             console.error(error);
+          }
+        } else {
+          alert("MetaMask is not installed. Please install it to continue.");
         }
-    } else {
-        alert("MetaMask is not installed. Please install it to continue.");
-    }
-}
-
+      }
     </script>
   </body>
-  <br><br><br><br><br><br><br><br>
-  <footer>
-    
-	<p>&copy; 2025 Fake Product Identification. All Rights Reserved.</p>
-	<div class="footer-links">
-	  <a href="#">Privacy Policy</a>
-	  <a href="#">Terms of Service</a>
-	  <a href="#">Contact Us</a>
-	</div>
-  </footer>
-
 </html>

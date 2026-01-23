@@ -1,176 +1,443 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Fake Product Identification</title>
+    <title>Fake Product Identification</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/qr_code_box.css">
 
-	<style>
-		body {
-		  font-family: 'Roboto', sans-serif;
-		  background: linear-gradient(to right, #4acbf3, #9dd1f3);
-		}
-	
-		.navbar {
-		  background: #111;
-		  
-		}
-	
-		.navbar-brand {
-		  font-weight: 700;
-		  color: #f8b400 !important;
-		  font-size: 22px;
-		  
-		}
-	
-		.container {
-		  margin-top: 40px;
-		  max-width: 900px;
-		}
-	
-		.form-section {
-		  background: #fff;
-		  border-radius: 12px;
-		  padding: 30px;
-		  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-		}
-	
-		.form-section h2 {
-		  color: #007bff;
-		  font-weight: 600;
-		  margin-bottom: 30px;
-		  text-align: center;
-		}
-	
-		.btn-warning {
-		  padding: 10px 25px;
-		  font-size: 16px;
-		  border-radius: 8px;
-		}
-	
-		.qr-code {
-		  text-align: center;
-		  margin-top: 30px;
-		}
-	
-		.qr-code img {
-		  border: 5px solid #f8f9fa;
-		  padding: 10px;
-		  border-radius: 12px;
-		  background: #fff;
-		  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-		}
-	  </style>
-	</head>
-	<body>
-	
-	  <!-- Navbar -->
-	  <nav class="navbar navbar-expand-lg navbar-dark">
-		<div class="container">
-		  <a class="navbar-brand" href="index.html">Fake Product Identification <span>through Blockchain</span></a>
-		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
-			<span class="fa fa-bars"></span>
-		  </button>
-		  <div class="collapse navbar-collapse" id="ftco-nav">
-			<ul class="navbar-nav ml-auto">
-			  <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-			  <li class="nav-item active"><a href="manufacturer.html" class="nav-link">Manufacturer</a></li>
-			  <li class="nav-item"><a href="seller.html" class="nav-link">Seller</a></li>
-			  <li class="nav-item"><a href="consumer.html" class="nav-link">Consumer</a></li>
-			</ul>
-		  </div>
-		</div>
-	  </nav>
-	
-    <!-- END nav -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/qr_code_box.css">
 
-	</section>
+    <style>
+      :root {
+        --primary: #2563eb;
+        --primary-soft: #e0ecff;
+        --accent: #f97316;
+        --bg-page: #f3f4f6;
+        --bg-card: #ffffff;
+        --text-main: #111827;
+        --text-muted: #6b7280;
+        --border-subtle: #e5e7eb;
+      }
 
+      * {
+        box-sizing: border-box;
+      }
 
-	<br><br>
-    <div class="container">
-		<div class="form-section">
-		  <h2>Add Product</h2>
-		  <form>
-			<div class="form-row">
-			  <div class="form-group col-md-6">
-				<label for="manufacturerID">Manufacturer ID</label>
-				<input type="text" class="form-control" id="manufacturerID" placeholder="Enter Manufacturer ID">
-			  </div>
-			  <div class="form-group col-md-6">
-				<label for="productName">Product Name</label>
-				<input type="text" class="form-control" id="productName" placeholder="Enter Product Name">
-			  </div>
-			</div>
-	
-			<div class="form-row">
-			  <div class="form-group col-md-6">
-				<label for="productSN">Product Serial Number</label>
-				<input type="text" class="form-control" id="productSN" placeholder="Enter Serial Number">
-			  </div>
-			  <div class="form-group col-md-6">
-				<label for="productBrand">Product Brand</label>
-				<input type="text" class="form-control" id="productBrand" placeholder="Enter Brand">
-			  </div>
-			</div>
-	
-			<div class="form-row">
-			  <div class="form-group col-md-6">
-				<label for="productPrice">Product Price</label>
-				<input type="text" class="form-control" id="productPrice" placeholder="Enter Price">
-			  </div>
-			</div>
-	
-			<div class="text-center">
-				<button type="submit" class="btn btn-warning btn-register" id="register" onclick="fetchQR()">Add the Product</button>
-			</div>
-		  </form>
-		</div>
+      body {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        color: var(--text-main);
+        background:
+          radial-gradient(circle at top left, rgba(37,99,235,0.08), transparent 55%),
+          radial-gradient(circle at bottom right, rgba(236,72,153,0.08), transparent 55%),
+          var(--bg-page);
+      }
 
-<!-- <br></br>	 -->
-<div class="qr-code">
-	<img id="imgQR" hidden src="" alt="qr-code">
-	<div class="mt-3">
-	  <button hidden class="btn btn-outline-primary" id="download" onclick="saveImage()">Download QR Code</button>
-	</div>
-  </div>
-</div>
+      /* NAVBAR – upgraded but same content */
+      .navbar {
+        background-image: linear-gradient(90deg, #2563eb, #4f46e5, #ec4899);
+        box-shadow: 0 6px 20px rgba(15, 23, 42, 0.25);
+        padding: 12px 20px;
+      }
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="js/popper.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/main.js"></script>
-	<script src="js/web3.min.js"></script>
-	<script src="js/truffle-contract.js"></script>
-	<script src="js/productApp.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
-	<script>
-	var src;
-	var qrValue;
-	function fetchQR(){
-		qrValue = document.getElementById('productSN').value;
-		qrImage = document.querySelector(".qr-code");
-		qrImageResult = qrImage.querySelector("img");
-		src = qrImageResult.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${qrValue}`;
-		
+      .navbar-brand {
+        font-weight: 700;
+        color: #fefce8 !important;
+        font-size: 1.05rem;
+      }
 
-		downloadQrImg = document.getElementById('imgQR');
-		downloadQrBtn = document.getElementById('download');
-		downloadQrImg.removeAttribute('hidden');
-		downloadQrBtn.removeAttribute('hidden');
+      .navbar-brand span {
+        font-weight: 400;
+        font-size: 0.95rem;
+      }
 
-	}
+      .navbar-nav .nav-link {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #e5e7eb !important;
+        padding: 6px 12px !important;
+        margin-left: 6px;
+        border-radius: 999px;
+        position: relative;
+        transition: background-color 0.18s ease, color 0.18s ease, transform 0.15s ease;
+      }
 
-	function saveImage(){
-		saveAs(src,qrValue);
-		downloadQrImg.setAttribute('hidden', 'hidden');
-		downloadQrBtn.setAttribute('hidden', 'hidden');
-	}
-	</script>
+      .navbar-nav .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 4px;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background: rgba(255,255,255,0.9);
+        border-radius: 999px;
+        transition: width 0.2s ease;
+      }
 
+      .navbar-nav .nav-link:hover,
+      .navbar-nav .nav-link:focus,
+      .navbar-nav .nav-item.active .nav-link {
+        background-color: rgba(15, 23, 42, 0.25);
+        color: #ffffff !important;
+        transform: translateY(-1px);
+      }
+
+      .navbar-nav .nav-link:hover::after,
+      .navbar-nav .nav-link:focus::after,
+      .navbar-nav .nav-item.active .nav-link::after {
+        width: 50%;
+      }
+
+      .navbar-toggler {
+        border: none;
+      }
+
+      .navbar-toggler .fa-bars {
+        color: #ffffff;
+        font-size: 1.2rem;
+      }
+
+      /* PAGE WRAPPER */
+      .page-wrapper {
+        padding: 40px 16px 32px;
+      }
+
+      .page-inner {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .page-title {
+        margin-bottom: 18px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .page-title-main {
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: #1d4ed8;
+      }
+
+      .page-title-sub {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+
+      /* CARD LAYOUT: form + QR preview */
+      .card-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr);
+        gap: 24px;
+        align-items: stretch;
+      }
+
+      @media (max-width: 900px) {
+        .card-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .form-section {
+        background: var(--bg-card);
+        border-radius: 16px;
+        padding: 24px 22px 22px;
+        box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+        border: 1px solid var(--border-subtle);
+      }
+
+      .form-section h2 {
+        color: #007bff;
+        font-weight: 600;
+        margin-bottom: 10px;
+        text-align: left;
+        font-size: 1.3rem;
+      }
+
+      .form-tagline {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-bottom: 18px;
+      }
+
+      .form-group label {
+        font-size: 0.88rem;
+        font-weight: 500;
+        color: #374151;
+      }
+
+      .form-control {
+        border-radius: 10px;
+        border: 1px solid #d1d5db;
+        font-size: 0.9rem;
+        padding: 9px 10px;
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 1px rgba(37,99,235,0.3);
+      }
+
+      .btn-warning {
+        padding: 10px 25px;
+        font-size: 15px;
+        border-radius: 999px;
+        border: none;
+        background-image: linear-gradient(135deg, #f97316, #fbbf24);
+        color: #111827;
+        font-weight: 600;
+        box-shadow: 0 10px 25px rgba(249,115,22,0.35);
+        transition: transform 0.17s ease, box-shadow 0.17s ease, background-position 0.25s ease;
+        background-size: 200% 100%;
+      }
+
+      .btn-warning:hover {
+        background-position: 100% 0;
+        transform: translateY(-1px);
+        box-shadow: 0 8px 20px rgba(249,115,22,0.4);
+      }
+
+      .btn-warning:active {
+        transform: translateY(0);
+        box-shadow: 0 4px 12px rgba(249,115,22,0.4);
+      }
+
+      /* QR PREVIEW CARD */
+      .qr-wrapper {
+        background: radial-gradient(circle at top left, rgba(37,99,235,0.12), transparent 55%),
+                    #0f172a;
+        border-radius: 16px;
+        padding: 20px 18px 18px;
+        box-shadow: 0 18px 45px rgba(15,23,42,0.6);
+        color: #e5e7eb;
+        border: 1px solid rgba(148,163,184,0.5);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 260px;
+      }
+
+      .qr-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        font-size: 0.85rem;
+      }
+
+      .qr-header-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 500;
+      }
+
+      .qr-header-title i {
+        color: #facc15;
+      }
+
+      .qr-header-status {
+        font-size: 0.78rem;
+        color: #9ca3af;
+      }
+
+      .qr-header-status span {
+        color: #a5b4fc;
+        font-weight: 500;
+      }
+
+      .qr-preview-box {
+        margin-top: 6px;
+        text-align: center;
+      }
+
+      .qr-code img {
+        border: 4px solid #0b1120;
+        padding: 10px;
+        border-radius: 12px;
+        background: #ffffff;
+        box-shadow: 0 10px 25px rgba(15,23,42,0.7);
+        max-width: 200px;
+      }
+
+      .qr-hint {
+        margin-top: 10px;
+        font-size: 0.8rem;
+        color: #9ca3af;
+      }
+
+      .qr-actions {
+        margin-top: 12px;
+      }
+
+      .btn-outline-primary {
+        border-radius: 999px;
+        font-size: 0.85rem;
+        padding: 7px 14px;
+        border: 1px solid #60a5fa;
+        color: #e5e7eb;
+        background: transparent;
+        transition: 0.18s ease;
+      }
+
+      .btn-outline-primary:hover {
+        background: #1d4ed8;
+        border-color: #1d4ed8;
+      }
+
+      @media (max-width: 576px) {
+        .navbar {
+          padding-inline: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Fake Product Identification <span>through Blockchain</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
+          <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+            <li class="nav-item active"><a href="manufacturer.html" class="nav-link">Manufacturer</a></li>
+            <li class="nav-item"><a href="seller.html" class="nav-link">Seller</a></li>
+            <li class="nav-item"><a href="consumer.html" class="nav-link">Consumer</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="page-wrapper">
+      <div class="page-inner">
+        <div class="page-title">
+          <div class="page-title-main">Add Product</div>
+          <div class="page-title-sub">
+            Register a new product on-chain and generate its QR code for packaging.
+          </div>
+        </div>
+
+        <div class="card-grid">
+          <!-- FORM CARD (your existing fields, styled) -->
+          <div class="form-section">
+            <h2>Add Product</h2>
+            <p class="form-tagline">
+              Fill in the manufacturer and product details. The Product Serial Number will be used to generate a unique QR code.
+            </p>
+            <form>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="manufacturerID">Manufacturer ID</label>
+                  <input type="text" class="form-control" id="manufacturerID" placeholder="Enter Manufacturer ID">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="productName">Product Name</label>
+                  <input type="text" class="form-control" id="productName" placeholder="Enter Product Name">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="productSN">Product Serial Number</label>
+                  <input type="text" class="form-control" id="productSN" placeholder="Enter Serial Number">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="productBrand">Product Brand</label>
+                  <input type="text" class="form-control" id="productBrand" placeholder="Enter Brand">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="productPrice">Product Price</label>
+                  <input type="text" class="form-control" id="productPrice" placeholder="Enter Price">
+                </div>
+              </div>
+
+              <div class="text-center mt-3">
+                <button type="submit" class="btn btn-warning btn-register" id="register" onclick="fetchQR()">
+                  Add the Product
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- QR PREVIEW / DOWNLOAD CARD -->
+          <div class="qr-wrapper">
+            <div>
+              <div class="qr-header">
+                <div class="qr-header-title">
+                  <i class="fa fa-qrcode"></i>
+                  <span>QR Code Preview</span>
+                </div>
+                <div class="qr-header-status">
+                  Status: <span>Waiting for product SN</span>
+                </div>
+              </div>
+
+              <div class="qr-preview-box qr-code">
+                <img id="imgQR" hidden src="" alt="qr-code">
+                <div class="qr-hint">
+                  Once you add the product, a QR code will appear here, which you can download and print on product packaging.
+                </div>
+              </div>
+            </div>
+
+            <div class="qr-actions text-center">
+              <button hidden class="btn btn-outline-primary" id="download" onclick="saveImage()">
+                Download QR Code
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts (unchanged) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/productApp.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+
+    <script>
+      var src;
+      var qrValue;
+
+      function fetchQR(){
+        qrValue = document.getElementById('productSN').value;
+        qrImage = document.querySelector(".qr-code");
+        qrImageResult = qrImage.querySelector("img");
+        src = qrImageResult.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${qrValue}`;
+
+        downloadQrImg = document.getElementById('imgQR');
+        downloadQrBtn = document.getElementById('download');
+        downloadQrImg.removeAttribute('hidden');
+        downloadQrBtn.removeAttribute('hidden');
+      }
+
+      function saveImage(){
+        saveAs(src,qrValue);
+        downloadQrImg.setAttribute('hidden', 'hidden');
+        downloadQrBtn.setAttribute('hidden', 'hidden');
+      }
+    </script>
   </body>
 </html>

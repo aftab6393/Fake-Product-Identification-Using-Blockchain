@@ -1,138 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Fake Product Identification</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>Fake Product Identification</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(to right, #4acbf3, #9dd1f3);
-            color: #333;
-        }
-        .navbar {
-            background: #343a40;
-        }
-        .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        .form-group input {
-            border-radius: 10px;
-            padding: 10px;
-        }
-        .btn-register {
-            background: #ff9800;
-            color: white;
-            font-weight: bold;
-            border-radius: 20px;
-            transition: 0.3s;
-        }
-        .btn-register:hover {
-            background: #e68900;
-        }
-        .table {
-            background: white;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        .table th, .table td {
-            padding: 15px;
-            text-align: center;
-        }
-        .table-hover tbody tr:hover {
-            background-color: #f1f1f1;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #343a40;
-            color: white;
-            margin-top: 30px;
-        }
-    </style>
-	</head>
-	<body>
-		<nav class="navbar navbar-expand-lg navbar-dark">
-            
-			<div class="container">
-				<a class="navbar-brand" href="#">Fake Product Identification</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarNav">
-					<ul class="navbar-nav ml-auto">
-                        <br><br>
-						<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="manufacturer.html">Manufacturer</a></li>
-						<li class="nav-item"><a class="nav-link" href="seller.html">Seller</a></li>
-						<li class="nav-item"><a class="nav-link" href="consumer.html">Consumer</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-        <br><br><br>
-    <!-- Seller Form -->
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --accent: #f97316;
+      --bg-page: #f3f4f6;
+      --bg-card: #ffffff;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --border-subtle: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', 'Roboto', sans-serif;
+      margin: 0;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,0.08), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(236,72,153,0.08), transparent 55%),
+        var(--bg-page);
+    }
+
+    /* NAVBAR – colorful, consistent with other enhanced pages */
+    .navbar {
+      background-image: linear-gradient(90deg, #2563eb, #4f46e5, #ec4899);
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.25);
+      padding: 12px 20px;
+    }
+
+    .navbar-brand {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fefce8 !important;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .navbar-nav .nav-link {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #e5e7eb !important;
+      padding: 6px 12px !important;
+      margin-left: 6px;
+      border-radius: 999px;
+      position: relative;
+      transition: background-color 0.18s ease, color 0.18s ease, transform 0.15s ease;
+    }
+
+    .navbar-nav .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 4px;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 999px;
+      transition: width 0.2s ease;
+    }
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link:focus,
+    .navbar-nav .nav-item.active .nav-link {
+      background-color: rgba(15, 23, 42, 0.25);
+      color: #ffffff !important;
+      transform: translateY(-1px);
+    }
+
+    .navbar-nav .nav-link:hover::after,
+    .navbar-nav .nav-link:focus::after,
+    .navbar-nav .nav-item.active .nav-link::after {
+      width: 50%;
+    }
+
+    .navbar-toggler {
+      border: none;
+    }
+
+    .navbar-toggler-icon,
+    .navbar-toggler .fa-bars {
+      color: #ffffff;
+      font-size: 1.2rem;
+    }
+
+    /* PAGE WRAPPER */
+    .page-wrapper {
+      padding: 40px 16px 32px;
+    }
+
+    .page-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .page-header {
+      margin-bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .page-header-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #1d4ed8;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .page-header-title i {
+      color: var(--accent);
+    }
+
+    .page-header-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* FORM CARD */
+    .card-seller {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 24px 22px 22px;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .card-seller-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .card-seller-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .card-seller-tag {
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-seller-tag i {
+      font-size: 0.85rem;
+    }
+
+    .card-seller-desc {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #374151;
+    }
+
+    .form-group input {
+      border-radius: 10px;
+      padding: 10px;
+      border: 1px solid #d1d5db;
+      font-size: 0.9rem;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px rgba(37,99,235,0.3);
+    }
+
+    .btn-register {
+      background: linear-gradient(135deg, #f97316, #fbbf24);
+      color: #111827;
+      font-weight: 600;
+      border-radius: 999px;
+      padding: 10px 26px;
+      border: none;
+      transition: 0.3s;
+      box-shadow: 0 10px 25px rgba(249,115,22,0.35);
+      font-size: 0.95rem;
+    }
+
+    .btn-register:hover {
+      background-position: 100% 0;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(249,115,22,0.4);
+    }
+
+    .btn-register:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 12px rgba(249,115,22,0.4);
+    }
+
+    /* FOOTER (optional, if you want to add later)
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #111827;
+      color: #e5e7eb;
+      margin-top: 30px;
+      font-size: 0.85rem;
+    }
+    */
+
+    @media (max-width: 576px) {
+      .navbar {
+        padding-inline: 12px;
+      }
+      .card-seller {
+        padding-inline: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
-        <h2>Add Seller</h2>
+      <a class="navbar-brand" href="index.html">Fake Product Identification</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+        <span class="fa fa-bars"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="manufacturer.html">Manufacturer</a></li>
+          <li class="nav-item active"><a class="nav-link" href="seller.html">Seller</a></li>
+          <li class="nav-item"><a class="nav-link" href="consumer.html">Consumer</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Wrapper -->
+  <div class="page-wrapper">
+    <div class="page-inner">
+      <div class="page-header">
+        <div class="page-header-title">
+          <i class="fa fa-store"></i>
+          Add Seller
+        </div>
+        <div class="page-header-subtitle">
+          Register a new seller/outlet and link it with the manufacturer on the blockchain network.
+        </div>
+      </div>
+
+      <div class="card-seller">
+        <div class="card-seller-header">
+          <div class="card-seller-title">Seller Details</div>
+          <div class="card-seller-tag">
+            <i class="fa fa-user-plus"></i> New Seller Onboarding
+          </div>
+        </div>
+        <p class="card-seller-desc">
+          Fill in the seller’s identity, contact, and mapping to manufacturer. This information will be used to
+          validate product movement and help detect fake entries at the seller level.
+        </p>
+
+        <!-- Seller Form (your original fields, same IDs & names) -->
         <form>
-            <div class="row">
-                <div class="col-md-6 form-group">
-                    <label>Seller Name</label>
-                    <input type="text" class="form-control" id="SellerName" name="SellerName">
-                </div>
-                <div class="col-md-6 form-group">
-                    <label>Seller Brand</label>
-                    <input type="text" class="form-control" id="SellerBrand" name="SellerBrand">
-                </div>
-
-                <div class="col-md-6 form-group">
-                    <label>Seller Code</label>
-                    <input type="text" class="form-control" id="SellerCode" name="SellerCode">
-                </div>
-                <div class="col-md-6 form-group">
-                    <label>Seller Phone Number</label>
-                    <input type="text" class="form-control" id="SellerPhoneNumber" name="SellerPhoneNumber">
-                </div>
-
-                <div class="col-md-6 form-group">
-                    <label>Seller Manager</label>
-                    <input type="text" class="form-control" id="SellerManager" name="SellerManager">
-                </div>
-                <div class="col-md-6 form-group">
-                    <label>Seller Address</label>
-                    <input type="text" class="form-control" id="SellerAddress" name="SellerAddress">
-                </div>
-
-                <div class="col-md-6 form-group">
-                    <label>Manufacturer ID</label>
-                    <input type="text" class="form-control" id="ManufacturerId" name="ManufacturerId">
-                </div>
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label>Seller Name</label>
+              <input type="text" class="form-control" id="SellerName" name="SellerName">
+            </div>
+            <div class="col-md-6 form-group">
+              <label>Seller Brand</label>
+              <input type="text" class="form-control" id="SellerBrand" name="SellerBrand">
             </div>
 
-            <button type="submit" class="btn btn-warning btn-register" id="register">Add the Seller</button>
+            <div class="col-md-6 form-group">
+              <label>Seller Code</label>
+              <input type="text" class="form-control" id="SellerCode" name="SellerCode">
+            </div>
+            <div class="col-md-6 form-group">
+              <label>Seller Phone Number</label>
+              <input type="text" class="form-control" id="SellerPhoneNumber" name="SellerPhoneNumber">
+            </div>
+
+            <div class="col-md-6 form-group">
+              <label>Seller Manager</label>
+              <input type="text" class="form-control" id="SellerManager" name="SellerManager">
+            </div>
+            <div class="col-md-6 form-group">
+              <label>Seller Address</label>
+              <input type="text" class="form-control" id="SellerAddress" name="SellerAddress">
+            </div>
+
+            <div class="col-md-6 form-group">
+              <label>Manufacturer ID</label>
+              <input type="text" class="form-control" id="ManufacturerId" name="ManufacturerId">
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-warning btn-register" id="register">
+            Add the Seller
+          </button>
         </form>
+      </div>
     </div>
+  </div>
 
-    <!-- JS Dependencies -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/popper.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/web3.min.js"></script>
-    <script src="js/truffle-contract.js"></script>
-    <script src="js/sellerApp.js"></script>
-
+  <!-- JS Dependencies -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/web3.min.js"></script>
+  <script src="js/truffle-contract.js"></script>
+  <script src="js/sellerApp.js"></script>
 </body>
 </html>

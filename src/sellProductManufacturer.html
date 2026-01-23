@@ -14,99 +14,331 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <style>
+      :root {
+        --primary: #2563eb;
+        --accent: #f97316;
+        --bg-page: #f3f4f6;
+        --bg-card: #ffffff;
+        --text-main: #111827;
+        --text-muted: #6b7280;
+        --border-subtle: #e5e7eb;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
       body {
         margin: 0;
         font-family: 'Roboto', sans-serif;
-        background: linear-gradient(to right, #4acbf3, #9dd1f3);
+        color: var(--text-main);
+        background:
+          radial-gradient(circle at top left, rgba(37,99,235,0.08), transparent 55%),
+          radial-gradient(circle at bottom right, rgba(236,72,153,0.08), transparent 55%),
+          var(--bg-page);
       }
 
-      h2 {
+      /* NAVBAR – match other enhanced pages */
+      .navbar {
+        background-image: linear-gradient(90deg, #2563eb, #4f46e5, #ec4899);
+        box-shadow: 0 6px 20px rgba(15, 23, 42, 0.25);
+        padding: 12px 20px;
+      }
+
+      .navbar-brand {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #fefce8 !important;
+      }
+
+      .navbar-brand span {
+        font-size: 0.85rem;
+        color: #e5e7eb;
+        margin-left: 4px;
+      }
+
+      .navbar-nav .nav-link {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #e5e7eb !important;
+        padding: 6px 12px !important;
+        margin-left: 6px;
+        border-radius: 999px;
+        position: relative;
+        transition: background-color 0.18s ease, color 0.18s ease, transform 0.15s ease;
+      }
+
+      .navbar-nav .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 4px;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background: rgba(255,255,255,0.9);
+        border-radius: 999px;
+        transition: width 0.2s ease;
+      }
+
+      .navbar-nav .nav-link:hover,
+      .navbar-nav .nav-link:focus,
+      .navbar-nav .nav-item.active .nav-link {
+        background-color: rgba(15, 23, 42, 0.25);
+        color: #ffffff !important;
+        transform: translateY(-1px);
+      }
+
+      .navbar-nav .nav-link:hover::after,
+      .navbar-nav .nav-link:focus::after,
+      .navbar-nav .nav-item.active .nav-link::after {
+        width: 50%;
+      }
+
+      .navbar-toggler {
+        border: none;
+      }
+
+      .navbar-toggler .fa-bars {
+        color: #ffffff;
+        font-size: 1.2rem;
+      }
+
+      /* PAGE WRAPPER */
+      .page-wrapper {
+        padding: 40px 16px 32px;
+      }
+
+      .page-inner {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .page-header {
+        margin-bottom: 18px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .page-header-title {
         font-weight: 700;
-        margin-top: 20px;
-        margin-bottom: 30px;
-        text-align: center;
-        color: #00796b;
+        font-size: 1.6rem;
+        color: #1d4ed8;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .page-header-title i {
+        color: var(--accent);
+      }
+
+      .page-header-subtitle {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+
+      /* CARD LAYOUT: Scanner + form */
+      .card-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        gap: 24px;
+        align-items: stretch;
+      }
+
+      @media (max-width: 900px) {
+        .card-layout {
+          grid-template-columns: 1fr;
+        }
       }
 
       .card {
-        padding: 30px;
-        border-radius: 15px;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-        background-color: #ffffff;
-        margin-bottom: 50px;
+        padding: 24px 22px;
+        border-radius: 16px;
+        box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+        border: 1px solid var(--border-subtle);
+        background-color: var(--bg-card);
+        margin-bottom: 0;
       }
 
-      label {
-        font-weight: 500;
-      }
-
-      .btn-register {
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
+      /* SCANNER COLUMN */
+      .scanner-card-title {
+        font-size: 1.1rem;
         font-weight: 600;
-        border-radius: 8px;
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .scanner-card-title i {
+        color: #22c55e;
+      }
+
+      .scanner-card-sub {
+        font-size: 0.86rem;
+        color: var(--text-muted);
+        margin-bottom: 14px;
       }
 
       #qr-reader {
         margin: 0 auto;
         padding: 15px;
-        background: #f9f9f9;
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        background: #f9fafb;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(15, 23, 42, 0.08);
+        max-width: 330px;
       }
 
-      .navbar-brand span {
-        font-size: 14px;
-        color: #ccc;
+      #qr-reader-results {
+        margin-top: 10px;
+        min-height: 20px;
+        font-size: 0.9rem;
+      }
+
+      /* FORM COLUMN */
+      .form-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+
+      .form-subtitle {
+        font-size: 0.86rem;
+        color: var(--text-muted);
+        margin-bottom: 14px;
+      }
+
+      label {
+        font-weight: 500;
+        font-size: 0.9rem;
+      }
+
+      .form-control {
+        border-radius: 10px;
+        font-size: 0.9rem;
+        padding: 9px 10px;
+        border: 1px solid #d1d5db;
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 1px rgba(37,99,235,0.3);
+      }
+
+      .btn-register {
+        width: 100%;
+        padding: 10px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #f97316, #fbbf24);
+        color: #111827;
+        border: none;
+        box-shadow: 0 10px 25px rgba(249,115,22,0.35);
+        transition: 0.2s ease;
+      }
+
+      .btn-register:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 20px rgba(249,115,22,0.4);
+      }
+
+      .btn-register:active {
+        transform: translateY(0);
+        box-shadow: 0 4px 12px rgba(249,115,22,0.4);
+      }
+
+      @media (max-width: 576px) {
+        .navbar {
+          padding-inline: 12px;
+        }
       }
     </style>
   </head>
   <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="index.html">Fake Product Identification <span>BY Blockchain</span></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-        <span class="fa fa-bars"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="manufacturer.html" class="nav-link">Manufacturer</a></li>
-          <li class="nav-item"><a href="seller.html" class="nav-link">Seller</a></li>
-          <li class="nav-item"><a href="consumer.html" class="nav-link">Consumer</a></li>
-        </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          Fake Product Identification <span>BY Blockchain</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+          <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="manufacturer.html" class="nav-link">Manufacturer</a></li>
+            <li class="nav-item"><a href="seller.html" class="nav-link">Seller</a></li>
+            <li class="nav-item active"><a href="consumer.html" class="nav-link">Consumer</a></li>
+          </ul>
+        </div>
       </div>
     </nav>
 
     <!-- Page Content -->
-    <div class="container mt-5">
-      <h2>Sell Product to Seller</h2>
-
-      <div class="card">
-        <!-- QR Scanner -->
-        <div class="text-center mb-4">
-          <div id="qr-reader" style="width: 300px;"></div>
-          <div id="qr-reader-results" class="mt-2 text-success font-weight-bold"></div>
+    <div class="page-wrapper">
+      <div class="page-inner">
+        <div class="page-header">
+          <div class="page-header-title">
+            <i class="fa fa-exchange"></i>
+            Sell Product to Seller
+          </div>
+          <div class="page-header-subtitle">
+            Scan the product QR, auto-fill the Product SN, and record a secure transfer to a seller.
+          </div>
         </div>
 
-        <!-- Form Inputs -->
-        <form>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="productSN">Product SN</label>
-              <input type="text" class="form-control" id="productSN" name="productSN" placeholder="Scanned from QR" disabled />
+        <div class="card-layout">
+          <!-- LEFT: Scanner -->
+          <div class="card">
+            <div class="scanner-card-title">
+              <i class="fa fa-qrcode"></i> QR Scanner
             </div>
-
-            <div class="form-group col-md-6">
-              <label for="sellerCode">Seller Code</label>
-              <input type="text" class="form-control" id="sellerCode" name="sellerCode" placeholder="Enter Seller Code" />
+            <div class="scanner-card-sub">
+              Point your camera at the product's QR code. Once scanned, the Product SN will be auto-filled in the form.
+            </div>
+            <div class="text-center">
+              <div id="qr-reader" style="width: 300px;"></div>
+              <div id="qr-reader-results" class="mt-2 text-success font-weight-bold"></div>
             </div>
           </div>
 
-          <button type="submit" class="btn btn-warning btn-register" id="register">Sell to Seller</button>
-        </form>
+          <!-- RIGHT: Form -->
+          <div class="card">
+            <div class="form-title">Transfer Details</div>
+            <div class="form-subtitle">
+              Confirm the scanned Product SN and specify the Seller Code to complete this transfer on-chain.
+            </div>
+
+            <form>
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label for="productSN">Product SN</label>
+                  <input type="text" class="form-control" id="productSN" name="productSN" placeholder="Scanned from QR" disabled />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label for="sellerCode">Seller Code</label>
+                  <input type="text" class="form-control" id="sellerCode" name="sellerCode" placeholder="Enter Seller Code" />
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-warning btn-register" id="register">
+                Sell to Seller
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -120,7 +352,7 @@
     <script src="js/sellProductManufacturer.js"></script>
     <script src="https://unpkg.com/html5-qrcode"></script>
 
-    <!-- QR Scanner Script -->
+    <!-- QR Scanner Script (unchanged logic) -->
     <script>
       function docReady(fn) {
         if (document.readyState === "complete" || document.readyState === "interactive") {

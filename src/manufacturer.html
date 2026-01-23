@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html lang="en">
   <head>
    	<title>Fake Product Identification</title>
@@ -84,6 +84,398 @@
 <br><br><br><br><br><br><br><br>
     <footer style="background-color: #222; color: #fff; text-align: center; padding: 20px 0; margin-top: 20px;">
 		<br>
+      <p>&copy; 2024 Fake Product Identification. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+  </body>
+</html> -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Fake Product Identification</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+      :root {
+        --primary: #2563eb;
+        --primary-soft: #e0ecff;
+        --accent: #f97316;
+        --text-main: #111827;
+        --text-muted: #6b7280;
+        --border-subtle: #e5e7eb;
+        --bg-page: #f3f4f6;
+        --bg-card: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: 'Roboto', Arial, sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(37,99,235,0.08), transparent 55%),
+          radial-gradient(circle at bottom right, rgba(236,72,153,0.08), transparent 55%),
+          var(--bg-page);
+        color: var(--text-main);
+      }
+
+      /* NAVBAR – colorful gradient for consistency with index */
+      .navbar {
+        background-image: linear-gradient(90deg, #2563eb, #4f46e5, #ec4899);
+        padding: 12px 20px;
+        box-shadow: 0 6px 20px rgba(15, 23, 42, 0.25);
+        position: sticky;
+        top: 0;
+        z-index: 20;
+      }
+
+      .navbar::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 -1px 0;
+        height: 3px;
+        background: linear-gradient(90deg, rgba(255,255,255,0.5), transparent);
+        opacity: 0.45;
+      }
+
+      .navbar-brand {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: #fefce8 !important;
+        display: flex;
+        align-items: center;
+      }
+
+      .navbar-brand span {
+        margin-left: 4px;
+        color: #fffbeb;
+        font-weight: 400;
+        font-size: 0.95rem;
+      }
+
+      .navbar-nav .nav-link {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #e5e7eb !important;
+        padding: 6px 12px !important;
+        margin-left: 6px;
+        border-radius: 999px;
+        position: relative;
+        transition: background-color 0.18s ease, color 0.18s ease, transform 0.15s ease;
+      }
+
+      .navbar-nav .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 4px;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background: rgba(255,255,255,0.9);
+        border-radius: 999px;
+        transition: width 0.2s ease;
+      }
+
+      .navbar-nav .nav-link:hover,
+      .navbar-nav .nav-link:focus {
+        background-color: rgba(15, 23, 42, 0.2);
+        color: #ffffff !important;
+        transform: translateY(-1px);
+      }
+
+      .navbar-nav .nav-link:hover::after,
+      .navbar-nav .nav-link:focus::after {
+        width: 50%;
+      }
+
+      .navbar-toggler {
+        border: none;
+      }
+
+      .navbar-toggler .fa-bars {
+        color: #ffffff;
+        font-size: 1.2rem;
+      }
+
+      /* MAIN SECTION */
+      section {
+        padding: 40px 16px 32px;
+        min-height: calc(100vh - 160px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .manufacturer-wrapper {
+        max-width: 1000px;
+        width: 100%;
+      }
+
+      .manufacturer-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        gap: 24px;
+        align-items: stretch;
+      }
+
+      @media (max-width: 768px) {
+        .manufacturer-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* LEFT – main content (your existing heading text) */
+      .container {
+        background: var(--bg-card);
+        padding: 28px 22px;
+        border-radius: 18px;
+        box-shadow: 0 16px 40px rgba(15, 23, 42, 0.15);
+        border: 1px solid var(--border-subtle);
+        text-align: center;
+      }
+
+      .container h2 {
+        margin-top: 0;
+        font-size: 1.8rem;
+        color: #1d4ed8;
+      }
+
+      .container h3 {
+        margin-top: 10px;
+        font-size: 1rem;
+        color: #4b5563;
+        font-weight: 400;
+      }
+
+      .container .subtitle {
+        margin-top: 16px;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+
+      .nav-actions {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        font-size: 0.86rem;
+      }
+
+      .nav-pill {
+        padding: 8px 14px;
+        border-radius: 999px;
+        background-color: #f9fafb;
+        border: 1px solid var(--border-subtle);
+        color: #4b5563;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .nav-pill i {
+        margin-right: 6px;
+        color: var(--primary);
+        font-size: 0.9rem;
+      }
+
+      /* RIGHT – quick actions card */
+      .side-card {
+        background: linear-gradient(135deg, #0f172a, #111827);
+        color: #e5e7eb;
+        border-radius: 18px;
+        padding: 20px 18px;
+        box-shadow: 0 16px 40px rgba(15, 23, 42, 0.35);
+        border: 1px solid rgba(148,163,184,0.45);
+      }
+
+      .side-card-title {
+        font-size: 1.05rem;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .side-card-title i {
+        color: #facc15;
+      }
+
+      .side-card-subtitle {
+        font-size: 0.85rem;
+        color: #9ca3af;
+        margin-bottom: 14px;
+      }
+
+      .steps-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 10px 0;
+        font-size: 0.85rem;
+      }
+
+      .steps-list li {
+        margin-bottom: 8px;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .step-number {
+        width: 20px;
+        height: 20px;
+        border-radius: 999px;
+        border: 1px solid rgba(148,163,184,0.7);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        color: #bfdbfe;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      .step-text {
+        color: #e5e7eb;
+      }
+
+      .side-hint {
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: 8px;
+        border-top: 1px dashed rgba(148,163,184,0.5);
+        padding-top: 8px;
+      }
+
+      /* FOOTER */
+      footer {
+        background-color: #111827;
+        color: #d1d5db;
+        text-align: center;
+        padding: 18px 10px;
+        margin-top: 24px;
+        border-top: 1px solid rgba(148,163,184,0.5);
+        font-size: 0.85rem;
+      }
+
+      footer p {
+        margin: 0;
+      }
+
+      @media (max-width: 576px) {
+        .navbar {
+          padding-inline: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+          Fake Product Identification <span>through Blockchain</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
+          <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="addProduct.html" class="nav-link">Add Product</a></li>
+            <li class="nav-item"><a href="addSeller.html" class="nav-link">Add Seller</a></li>
+            <li class="nav-item"><a href="sellProductManufacturer.html" class="nav-link">Sell Product To Seller</a></li>
+            <li class="nav-item"><a href="querySeller.html" class="nav-link">Query Seller</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section>
+      <div class="manufacturer-wrapper">
+        <div class="manufacturer-grid">
+          <!-- LEFT: your original content, beautified -->
+          <div class="container">
+            <h2 style="color: #007bff;">Manufacturer</h2>
+            <h3 style="color: #555;">Go to navigation bar to perform operations.</h3>
+
+            <p class="subtitle">
+              Use the options above to register products, onboard sellers, sell products to them,
+              and query existing seller details on the blockchain.
+            </p>
+
+            <div class="nav-actions">
+              <div class="nav-pill">
+                <i class="fa fa-plus-square"></i> Add Product via <strong>&nbsp;Add Product</strong>
+              </div>
+              <div class="nav-pill">
+                <i class="fa fa-user-plus"></i> Onboard new seller using <strong>&nbsp;Add Seller</strong>
+              </div>
+              <div class="nav-pill">
+                <i class="fa fa-exchange"></i> Transfer items in <strong>&nbsp;Sell Product To Seller</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: extra UX card (no logic change, just guidance) -->
+          <aside class="side-card">
+            <div class="side-card-title">
+              <i class="fa fa-industry"></i>
+              Manufacturer Console
+            </div>
+            <div class="side-card-subtitle">
+              Quick overview of your flow in the Fake Product Identification system.
+            </div>
+
+            <ul class="steps-list">
+              <li>
+                <span class="step-number">1</span>
+                <span class="step-text">
+                  Use <strong>Add Product</strong> to create a unique on-chain product entry with a secure ID / QR.
+                </span>
+              </li>
+              <li>
+                <span class="step-number">2</span>
+                <span class="step-text">
+                  Onboard trusted sellers via <strong>Add Seller</strong>, linking them to your manufacturer identity.
+                </span>
+              </li>
+              <li>
+                <span class="step-number">3</span>
+                <span class="step-text">
+                  Transfer inventory to sellers using <strong>Sell Product To Seller</strong> to maintain a verifiable supply chain.
+                </span>
+              </li>
+              <li>
+                <span class="step-number">4</span>
+                <span class="step-text">
+                  Use <strong>Query Seller</strong> to view seller info, product history and ensure authenticity at each hop.
+                </span>
+              </li>
+            </ul>
+
+            <div class="side-hint">
+              All these actions are recorded via smart contracts, helping downstream consumers detect fake products
+              instantly when they scan the QR.
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <footer>
       <p>&copy; 2024 Fake Product Identification. All Rights Reserved.</p>
     </footer>
 

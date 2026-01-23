@@ -1,123 +1,338 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Fake Product Identification</title>
+    <title>Fake Product Identification</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/style.css">
-	<style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(to right, #4acbf3, #9dd1f3);
-            color: #333;
-        }
-        .navbar {
-            background: #343a40;
-        }
-        .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        .form-group input {
-            border-radius: 10px;
-            padding: 10px;
-        }
-        .btn-register {
-            background: #ff9800;
-            color: white;
-            font-weight: bold;
-            border-radius: 20px;
-            transition: 0.3s;
-        }
-        .btn-register:hover {
-            background: #e68900;
-        }
-        .table {
-            background: white;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        .table th, .table td {
-            padding: 15px;
-            text-align: center;
-        }
-        .table-hover tbody tr:hover {
-            background-color: #f1f1f1;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #343a40;
-            color: white;
-            margin-top: 30px;
-        }
-    </style>
-	</head>
-	<body>
-		<nav class="navbar navbar-expand-lg navbar-dark">
-			<div class="container">
-				<a class="navbar-brand" href="#">Fake Product Identification</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarNav">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="manufacturer.html">Manufacturer</a></li>
-						<li class="nav-item"><a class="nav-link" href="seller.html">Seller</a></li>
-						<li class="nav-item"><a class="nav-link" href="consumer.html">Consumer</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	
-		<section class="container mt-5">
-			<h2 class="text-center mb-4">Query Sellers</h2>
-			<div class="row justify-content-center">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="manufacturerCode">Manufacturer Code</label>
-						<input type="text" class="form-control" id="manufacturerCode" placeholder="Enter Manufacturer Code">
-					</div>
-					<button class="btn btn-register btn-block" id="register">Get Sellers</button>
-				</div>
-			</div>
-		</section>
-	<section class="container mt-5">
-        <h2 class="text-center">Sellers</h2>
-        <p class="text-center">Following are the sellers registered through Blockchain Network</p>
-        <table class="table table-hover">
-            <thead class="bg-dark text-white">
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Brand</th>
-                    <th>Code</th>
-                    <th>Number</th>
-                    <th>Manager</th>
-                    <th>Address</th>
-                </tr>
-            </thead>
-            <tbody id="logdata">
-                <!-- Dynamic Content -->
-            </tbody>
-        </table>
-        <center><p>Your address is <b id="add"></b></p></center>
-    </section>
 
-	<footer>
-        &copy; 2025 Fake Product Identification | All Rights Reserved
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+      :root {
+        --primary: #2563eb;
+        --accent: #f97316;
+        --bg-page: #f3f4f6;
+        --bg-card: #ffffff;
+        --text-main: #111827;
+        --text-muted: #6b7280;
+        --border-subtle: #e5e7eb;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        color: var(--text-main);
+        background:
+          radial-gradient(circle at top left, rgba(37,99,235,0.08), transparent 55%),
+          radial-gradient(circle at bottom right, rgba(236,72,153,0.08), transparent 55%),
+          var(--bg-page);
+      }
+
+      /* NAVBAR – consistent gradient look */
+      .navbar {
+        background-image: linear-gradient(90deg, #2563eb, #4f46e5, #ec4899);
+        padding: 12px 20px;
+        box-shadow: 0 6px 20px rgba(15, 23, 42, 0.25);
+      }
+
+      .navbar-brand {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #fefce8 !important;
+      }
+
+      .navbar-nav .nav-link {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #e5e7eb !important;
+        padding: 6px 12px !important;
+        margin-left: 6px;
+        border-radius: 999px;
+        position: relative;
+        transition: background-color 0.18s ease, color 0.18s ease, transform 0.15s ease;
+      }
+
+      .navbar-nav .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 4px;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background: rgba(255,255,255,0.9);
+        border-radius: 999px;
+        transition: width 0.2s ease;
+      }
+
+      .navbar-nav .nav-link:hover,
+      .navbar-nav .nav-link:focus,
+      .navbar-nav .nav-item.active .nav-link {
+        background-color: rgba(15, 23, 42, 0.25);
+        color: #ffffff !important;
+        transform: translateY(-1px);
+      }
+
+      .navbar-nav .nav-link:hover::after,
+      .navbar-nav .nav-link:focus::after,
+      .navbar-nav .nav-item.active .nav-link::after {
+        width: 50%;
+      }
+
+      .navbar-toggler {
+        border: none;
+      }
+
+      .navbar-toggler .fa-bars {
+        color: #ffffff;
+        font-size: 1.2rem;
+      }
+
+      /* PAGE WRAPPER */
+      .page-wrapper {
+        padding: 40px 16px 32px;
+      }
+
+      .page-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .page-header {
+        text-align: center;
+        margin-bottom: 24px;
+      }
+
+      .page-header h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #1d4ed8;
+        margin-bottom: 6px;
+      }
+
+      .page-header p {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        margin-bottom: 0;
+      }
+
+      /* QUERY CARD */
+      .card-query {
+        max-width: 650px;
+        margin: 0 auto 28px;
+        background: var(--bg-card);
+        border-radius: 16px;
+        padding: 22px 22px 20px;
+        box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+        border: 1px solid var(--border-subtle);
+      }
+
+      .card-query-label {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #374151;
+      }
+
+      .form-group input {
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 0.9rem;
+        border: 1px solid #d1d5db;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 1px rgba(37,99,235,0.3);
+      }
+
+      .btn-register {
+        background: linear-gradient(135deg, #f97316, #fbbf24);
+        color: #111827;
+        font-weight: bold;
+        border-radius: 999px;
+        transition: 0.3s;
+        border: none;
+        padding: 10px 24px;
+        font-size: 0.95rem;
+        box-shadow: 0 10px 25px rgba(249,115,22,0.35);
+      }
+
+      .btn-register:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 20px rgba(249,115,22,0.4);
+      }
+
+      .btn-register:active {
+        transform: translateY(0);
+        box-shadow: 0 4px 12px rgba(249,115,22,0.4);
+      }
+
+      /* TABLE CARD */
+      .card-table {
+        margin-top: 10px;
+        background: var(--bg-card);
+        border-radius: 16px;
+        padding: 18px 18px 12px;
+        box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+        border: 1px solid var(--border-subtle);
+      }
+
+      .card-table h2 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        text-align: center;
+        color: #1f2937;
+        margin-bottom: 4px;
+      }
+
+      .card-table p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        text-align: center;
+        margin-bottom: 14px;
+      }
+
+      .table {
+        margin-bottom: 8px;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .table thead {
+        background: #111827;
+        color: #f9fafb;
+      }
+
+      .table th, .table td {
+        padding: 12px;
+        text-align: center;
+        font-size: 0.88rem;
+        vertical-align: middle;
+      }
+
+      .table-hover tbody tr:hover {
+        background-color: #f9fafb;
+      }
+
+      #add {
+        font-weight: 600;
+        color: #2563eb;
+      }
+
+      .address-text {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-top: 6px;
+      }
+
+      footer {
+        text-align: center;
+        padding: 18px 10px;
+        background: #111827;
+        color: #e5e7eb;
+        margin-top: 30px;
+        font-size: 0.85rem;
+        border-top: 1px solid rgba(148,163,184,0.5);
+      }
+
+      @media (max-width: 576px) {
+        .navbar {
+          padding-inline: 12px;
+        }
+        .card-query,
+        .card-table {
+          padding-inline: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">Fake Product Identification</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+          <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="manufacturer.html">Manufacturer</a></li>
+            <li class="nav-item"><a class="nav-link" href="seller.html">Seller</a></li>
+            <li class="nav-item"><a class="nav-link" href="consumer.html">Consumer</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="page-wrapper">
+      <div class="page-inner">
+        <div class="page-header">
+          <h2>Query Sellers</h2>
+          <p>Enter a manufacturer code to fetch all associated sellers from the blockchain network.</p>
+        </div>
+
+        <!-- Query Form Card -->
+        <section class="card-query">
+          <div class="row justify-content-center">
+            <div class="col-md-10">
+              <div class="form-group">
+                <label class="card-query-label" for="manufacturerCode">Manufacturer Code</label>
+                <input type="text" class="form-control" id="manufacturerCode" placeholder="Enter Manufacturer Code">
+              </div>
+              <button class="btn btn-register btn-block" id="register">
+                Get Sellers
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sellers Table Card -->
+        <section class="card-table mt-4">
+          <h2>Sellers</h2>
+          <p>Following are the sellers registered through Blockchain Network.</p>
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Brand</th>
+                  <th>Code</th>
+                  <th>Number</th>
+                  <th>Manager</th>
+                  <th>Address</th>
+                </tr>
+              </thead>
+              <tbody id="logdata">
+                <!-- Dynamic Content -->
+              </tbody>
+            </table>
+          </div>
+          <div class="text-center address-text">
+            Your address is <b id="add"></b>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <footer>
+      &copy; 2025 Fake Product Identification | All Rights Reserved
     </footer>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/web3.min.js"></script>
-  <script src="js/truffle-contract.js"></script>
-  <script src="js/sellerDataApp.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/sellerDataApp.js"></script>
   </body>
 </html>

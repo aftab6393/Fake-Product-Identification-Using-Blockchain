@@ -35,7 +35,7 @@ This project addresses the growing issue of counterfeit goods by enabling secure
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/Aakashpal-5966/Fake-Product-Identification.git
+git clone https://github.com/aftab6393/Fake-Product-Identification.git
 cd Fake-Product-Identification
 
 2. Install dependencies

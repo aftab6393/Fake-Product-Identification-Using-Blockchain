@@ -1,56 +1,207 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Fake Product Identification</title>
+    <title>Fake Product Identification</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/style.css">
-	<style>
-		body {
-		  margin: 0;
-		  font-family: 'Roboto', sans-serif;
-		  background: linear-gradient(to right, #4acbf3, #007bff);
-		  color: #333;
-		}
-		.navbar {
-		  background: rgba(0, 0, 0, 0.9);
-		  padding: 15px;
-		}
-		.navbar-brand {
-		  font-size: 24px;
-		  font-weight: bold;
-		  color: #f8b400;
-		}
-		.container {
-		  background: #fff;
-		  padding: 30px;
-		  border-radius: 15px;
-		  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-		  max-width: 600px;
-		  margin: 20px auto;
-		  text-align: center;
-		}
-		button {
-		  background-color: #f8b400;
-		  color: white;
-		  border: none;
-		  padding: 12px 20px;
-		  font-size: 18px;
-		  border-radius: 8px;
-		  cursor: pointer;
-		  transition: 0.3s;
-		  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-		}
-		button:hover {
-		  background-color: #d99a00;
-		  transform: translateY(-2px);
-		}
-	</style>
-	</head>
-	<body>
-	<nav class="navbar navbar-expand-lg navbar-dark">
+
+    <!-- Fonts & Icons -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+      :root {
+        --primary: #2563eb;
+        --accent: #f97316;
+        --card-bg: rgba(255, 255, 255, 0.80);
+        --blur: blur(14px);
+        --shadow: 0 15px 45px rgba(15,23,42,0.22);
+        --text-main: #111827;
+        --text-muted: #6b7280;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+        background:
+          radial-gradient(circle at top left, #4acbf3, #007bff);
+        color: var(--text-main);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* NAVBAR – aligned with other enhanced pages */
+      .navbar {
+        background-image: linear-gradient(90deg, #2563eb, #4f46e5, #ec4899);
+        padding: 12px 20px;
+        box-shadow: 0 6px 20px rgba(15, 23, 42, 0.35);
+      }
+
+      .navbar-brand {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #fefce8 !important;
+      }
+
+      .navbar-brand span {
+        font-size: 0.85rem;
+        color: #e5e7eb;
+        margin-left: 4px;
+      }
+
+      .nav-link {
+        color: #e5e7eb !important;
+        margin-left: 10px;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.09em;
+        padding: 6px 12px !important;
+        border-radius: 999px;
+        position: relative;
+        transition: 0.2s ease;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 4px;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background: rgba(255,255,255,0.9);
+        border-radius: 999px;
+        transition: width 0.2s ease;
+      }
+
+      .nav-link:hover,
+      .nav-link:focus {
+        color: #ffffff !important;
+        background-color: rgba(15,23,42,0.35);
+        transform: translateY(-1px);
+      }
+
+      .nav-link:hover::after,
+      .nav-link:focus::after {
+        width: 50%;
+      }
+
+      .navbar-toggler {
+        border: none;
+      }
+
+      .navbar-toggler .fa-bars {
+        color: #ffffff;
+        font-size: 1.1rem;
+      }
+
+      /* MAIN SECTION */
+      section {
+        flex: 1;
+        padding: 40px 16px 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Target only the main content container, not navbar container */
+      section .container {
+        background: var(--card-bg);
+        backdrop-filter: var(--blur);
+        -webkit-backdrop-filter: var(--blur);
+        padding: 30px 24px 26px;
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      section .container::before {
+        content: "";
+        position: absolute;
+        width: 130px;
+        height: 130px;
+        background: radial-gradient(circle, rgba(37,99,235,0.18), transparent 65%);
+        top: -40px;
+        right: -40px;
+        opacity: 0.7;
+      }
+
+      section .container::after {
+        content: "";
+        position: absolute;
+        width: 110px;
+        height: 110px;
+        background: radial-gradient(circle, rgba(248,113,22,0.22), transparent 65%);
+        bottom: -40px;
+        left: -40px;
+        opacity: 0.7;
+      }
+
+      section .container > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      h2 {
+        font-size: 1.7rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: #1d4ed8;
+      }
+
+      h3 {
+        font-size: 1rem;
+        font-weight: 400;
+        color: var(--text-muted);
+        margin-bottom: 22px;
+      }
+
+      button {
+        background: linear-gradient(135deg, #f97316, #fbbf24);
+        color: #111827;
+        border: none;
+        padding: 12px 24px;
+        font-size: 0.98rem;
+        font-weight: 600;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: 0.22s ease;
+        box-shadow: 0 12px 28px rgba(249,115,22,0.35);
+      }
+
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 32px rgba(249,115,22,0.45);
+      }
+
+      button:active {
+        transform: translateY(0);
+        box-shadow: 0 8px 18px rgba(249,115,22,0.45);
+      }
+
+      /* FOOTER */
+      footer {
+        background-color: #0f172a;
+        color: #e5e7eb;
+        text-align: center;
+        padding: 16px 10px;
+        font-size: 0.9rem;
+        border-top: 1px solid rgba(148,163,184,0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html">Fake Product Identification <span>through Blockchain</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
@@ -68,22 +219,22 @@
 
     <section>
       <div class="container">
-        <h2 style="color: #007bff;">Consumer</h2>
-        <h3 style="color: #555;">Go to navigation bar to perform operations.</h3>
+        <h2>Consumer</h2>
+        <h3>Go to navigation bar to perform operations.</h3>
         <button onclick="location.href='verifyProducts.html'">Verify a Product</button>
       </div>
     </section>
 
-    <footer style="background-color: #222; color: #fff; text-align: center; padding: 20px 0;">
+    <footer>
       <p>&copy; 2024 Fake Product Identification. All Rights Reserved.</p>
     </footer>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/web3.min.js"></script>
-  <script src="js/truffle-contract.js"></script>
-  <script src="js/sellerDataApp.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/sellerDataApp.js"></script>
   </body>
 </html>

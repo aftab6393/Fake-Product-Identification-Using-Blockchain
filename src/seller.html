@@ -4,64 +4,257 @@
   <title>Seller Dashboard | Fake Product Identification</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet'>
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700&display=swap' rel='stylesheet'>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
   <style>
+    :root {
+      --primary: #2563eb;
+      --accent: #f97316;
+      --bg-page: #f3f4f6;
+      --bg-card: #ffffff;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --border-subtle: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to right, #4acbf3, #9dd1f3);
-      color: #333;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,0.08), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(236,72,153,0.08), transparent 55%),
+        var(--bg-page);
+      color: var(--text-main);
     }
+
+    /* NAVBAR – consistent gradient theme */
     .navbar {
-      background: #222 !important;
+      background-image: linear-gradient(90deg, #2563eb, #4f46e5, #ec4899);
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.25);
+      padding: 12px 20px;
     }
+
     .navbar-brand {
-      font-size: 26px;
+      font-size: 1.2rem;
       font-weight: 700;
-      color: #fff !important;
+      color: #fefce8 !important;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
-    .nav-link {
-      color: #fff !important;
-      font-size: 18px;
-      transition: color 0.3s ease;
+
+    .navbar-nav .nav-link {
+      color: #e5e7eb !important;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 6px 12px !important;
+      margin-left: 6px;
+      border-radius: 999px;
+      position: relative;
+      transition: background-color 0.18s ease, color 0.18s ease, transform 0.15s ease;
     }
-    .nav-link:hover {
-      color: #f9c74f !important;
+
+    .navbar-nav .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 4px;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 999px;
+      transition: width 0.2s ease;
     }
-    .container {
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link:focus,
+    .navbar-nav .nav-item.active .nav-link {
+      background-color: rgba(15, 23, 42, 0.25);
+      color: #ffffff !important;
+      transform: translateY(-1px);
+    }
+
+    .navbar-nav .nav-link:hover::after,
+    .navbar-nav .nav-link:focus::after,
+    .navbar-nav .nav-item.active .nav-link::after {
+      width: 50%;
+    }
+
+    .navbar-toggler {
+      border: none;
+    }
+
+    .navbar-toggler .fa-bars {
+      color: #ffffff;
+      font-size: 1.2rem;
+      margin-right: 4px;
+    }
+
+    /* PAGE WRAPPER */
+    .page-wrapper {
+      padding: 50px 16px 40px;
+      min-height: calc(100vh - 120px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dashboard-card {
+      max-width: 700px;
+      width: 100%;
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 32px 24px 26px;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.15);
+      border: 1px solid var(--border-subtle);
       text-align: center;
-      padding: 80px 20px;
+      position: relative;
+      overflow: hidden;
     }
-    h2 {
-      font-size: 42px;
-      color: #fff;
-      margin-bottom: 10px;
+
+    .dashboard-card::before {
+      content: "";
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle, rgba(37,99,235,0.18), transparent 65%);
+      top: -40px;
+      right: -40px;
+      opacity: 0.6;
     }
-    h3 {
-      font-size: 22px;
-      color: #f8f9fa;
-      margin-bottom: 30px;
+
+    .dashboard-card::after {
+      content: "";
+      position: absolute;
+      width: 110px;
+      height: 110px;
+      background: radial-gradient(circle, rgba(248,113,22,0.22), transparent 65%);
+      bottom: -40px;
+      left: -40px;
+      opacity: 0.7;
     }
+
+    .dash-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .dash-badge i {
+      font-size: 0.85rem;
+    }
+
+    .dashboard-title {
+      font-size: 1.9rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #111827;
+      position: relative;
+      z-index: 1;
+    }
+
+    .dashboard-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 26px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .actions-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
     .btn-custom {
-      font-size: 18px;
-      padding: 10px 30px;
-      border-radius: 30px;
-      transition: all 0.3s ease;
-      margin: 10px;
+      font-size: 0.95rem;
+      padding: 10px 26px;
+      border-radius: 999px;
+      transition: all 0.2s ease;
+      margin: 0;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
-    .btn-custom:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+    .btn-custom-primary {
+      background: linear-gradient(135deg, #f97316, #fbbf24);
+      color: #111827;
+      border: none;
+      box-shadow: 0 10px 25px rgba(249,115,22,0.35);
     }
+
+    .btn-custom-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(249,115,22,0.4);
+    }
+
+    .btn-custom-secondary {
+      background: #ffffff;
+      color: #111827;
+      border: 1px solid #d1d5db;
+      box-shadow: 0 6px 18px rgba(15,23,42,0.06);
+    }
+
+    .btn-custom-secondary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(15,23,42,0.12);
+      border-color: #9ca3af;
+    }
+
+    .btn-custom i {
+      font-size: 0.95rem;
+    }
+
+    .helper-text {
+      margin-top: 18px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
     footer {
-      background: #222;
-      color: #ccc;
+      background: #0f172a;
+      color: #cbd5e1;
       text-align: center;
-      padding: 15px 0;
-      margin-top: 50px;
+      padding: 14px 10px;
+      margin-top: 0;
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(148,163,184,0.5);
+    }
+
+    @media (max-width: 576px) {
+      .navbar {
+        padding-inline: 12px;
+      }
+      .dashboard-card {
+        padding-inline: 18px;
+      }
+      .dashboard-title {
+        font-size: 1.6rem;
+      }
     }
   </style>
 </head>
@@ -72,7 +265,7 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">Fake Product Identification</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
-        <span class="fa fa-bars"></span> Menu
+        <span class="fa fa-bars"></span>
       </button>
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav m-auto">
@@ -85,16 +278,33 @@
   </nav>
 
   <!-- MAIN SECTION -->
-  <section>
-    <div class="container">
-      <h2>Seller Dashboard</h2>
-      <h3>What would you like to do?</h3>
-      <a href="sellProductSeller.html" class="btn btn-warning btn-custom">Sell Product to Consumer</a>
-      <a href="queryProducts.html" class="btn btn-light btn-custom">View Products for Sale</a>
+  <div class="page-wrapper">
+    <div class="dashboard-card">
+      <div class="dash-badge">
+        <i class="fa fa-store"></i> Seller Dashboard
+      </div>
+      <div class="dashboard-title">Seller Dashboard</div>
+      <div class="dashboard-subtitle">
+        Manage your on-chain inventory and record sales to consumers with transparent, verifiable product history.
+      </div>
+
+      <div class="actions-grid">
+        <a href="sellProductSeller.html" class="btn btn-custom btn-custom-primary">
+          <i class="fa fa-shopping-cart"></i>
+          Sell Product to Consumer
+        </a>
+        <a href="queryProducts.html" class="btn btn-custom btn-custom-secondary">
+          <i class="fa fa-list"></i>
+          View Products for Sale
+        </a>
+      </div>
+
+      <div class="helper-text">
+        Use these actions to keep your product movements recorded on the blockchain, helping consumers detect fake products instantly.
+      </div>
     </div>
-  </section>
-<br><br><br>
-<br>
+  </div>
+
   <!-- FOOTER -->
   <footer>
     <p>© 2025 Fake Product Identification.</p>

@@ -4,55 +4,189 @@
   <title>Sell Product | Fake Product Identification</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,700" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
   <style>
+    :root {
+      --primary: #2563eb;
+      --accent: #f97316;
+      --card-bg: rgba(255, 255, 255, 0.78);
+      --blur: blur(14px);
+      --shadow: 0 15px 45px rgba(15,23,42,0.22);
+      --text-main: #111827;
+      --text-muted: #6b7280;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Roboto', sans-serif;
-	  background: linear-gradient(to right, #4acbf3, #9dd1f3);
-      color: #333;
+      background: radial-gradient(circle at top left, #4acbf3, #9dd1f3);
+      color: var(--text-main);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
+
+    /* NAVBAR – match enhanced theme */
     .navbar {
-      background-color: #343a40;
+      background-image: linear-gradient(90deg, #2563eb, #4f46e5, #ec4899);
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.35);
+      padding: 12px 20px;
     }
+
     .navbar-brand {
-      font-size: 24px;
+      font-size: 1.25rem;
       font-weight: bold;
       color: #fff !important;
     }
+
     .nav-link {
-      color: #fff !important;
+      color: #e5e7eb !important;
+      margin-left: 12px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      border-radius: 999px;
+      padding: 6px 12px !important;
+      transition: 0.2s ease;
+      position: relative;
     }
-    .nav-link:hover {
-      color: #ffc107 !important;
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 4px;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 999px;
+      transition: width 0.2s ease;
     }
-    h2 {
-      margin-top: 30px;
-      margin-bottom: 20px;
-      color: #333;
+
+    .nav-link:hover,
+    .nav-link:focus {
+      color: #ffffff !important;
+      background-color: rgba(15,23,42,0.35);
+      transform: translateY(-1px);
     }
+
+    .nav-link:hover::after,
+    .nav-link:focus::after {
+      width: 50%;
+    }
+
+    .navbar-toggler {
+      border: none;
+    }
+
+    .navbar-toggler .fa-bars {
+      color: #fff;
+      font-size: 1.1rem;
+    }
+
+    /* MAIN WRAPPER */
+    .page-wrapper {
+      flex: 1;
+      padding: 32px 16px 0;
+    }
+
+    .glass-card {
+      background: var(--card-bg);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+      border-radius: 18px;
+      padding: 24px 22px 26px;
+      box-shadow: var(--shadow);
+      max-width: 950px;
+      margin: 0 auto 26px;
+    }
+
+    .glass-card h2 {
+      font-weight: 700;
+      margin-bottom: 18px;
+      text-align: center;
+      color: #1f2937;
+    }
+
+    /* FORM & INPUTS */
     .form-control {
-      border-radius: 8px;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+      padding: 10px 11px;
+      transition: 0.18s ease;
     }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px rgba(37,99,235,0.35);
+    }
+
     .btn-register {
       margin-top: 20px;
       font-size: 16px;
       padding: 10px 30px;
-      border-radius: 30px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #f97316, #fbbf24);
+      color: #111827;
+      font-weight: 600;
+      box-shadow: 0 12px 28px rgba(249,115,22,0.35);
+      transition: 0.22s ease;
     }
+
+    .btn-register:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px rgba(249,115,22,0.45);
+    }
+
+    .btn-register:active {
+      transform: translateY(0);
+      box-shadow: 0 8px 20px rgba(249,115,22,0.45);
+    }
+
+    /* QR READER */
     #qr-reader {
       margin: 20px auto;
-      border-radius: 10px;
+      border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 0 10px rgba(0,0,0,0.15);
+      box-shadow: 0 10px 25px rgba(15,23,42,0.18);
+      background: white;
     }
+
+    #qr-reader-results {
+      color: var(--primary);
+    }
+
+    /* FOOTER */
     .footer {
-      margin-top: 60px;
-      background: #343a40;
-      color: #ccc;
+      background: #0f172a;
+      color: #cbd5e1;
       text-align: center;
-      padding: 15px 0;
+      padding: 15px 10px;
+      margin-top: 40px;
+      border-top: 1px solid rgba(148,163,184,0.4);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .glass-card {
+        padding-inline: 16px;
+      }
+      .btn-register {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -77,39 +211,42 @@
 </nav>
 
 <!-- MAIN CONTENT -->
-<div class="container">
-  <h2 class="text-center">Sell Product to Consumer</h2>
+<div class="page-wrapper">
+  <div class="container">
+    <div class="glass-card">
+      <h2>Sell Product to Consumer</h2>
 
-  <!-- QR CODE SCANNER -->
-  <div class="text-center">
-    <div id="qr-reader" style="width: 300px;"></div>
-    <div id="qr-reader-results" class="mt-2 font-weight-bold"></div>
-  </div>
+      <!-- QR CODE SCANNER -->
+      <div class="text-center">
+        <div id="qr-reader" style="width: 300px;"></div>
+        <div id="qr-reader-results" class="mt-2 font-weight-bold"></div>
+      </div>
 
-  <!-- FORM -->
-  <div class="row justify-content-center mt-4">
-    <div class="col-md-8">
-      <form>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="productSN">Product SN</label>
-            <input disabled type="text" class="form-control" id="productSN" placeholder="Scanned from QR">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="consumerCode">Consumer Code</label>
-            <input type="text" class="form-control" id="consumerCode" placeholder="Enter consumer code">
-          </div>
+      <!-- FORM -->
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-8">
+          <form>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="productSN">Product SN</label>
+                <input disabled type="text" class="form-control" id="productSN" placeholder="Scanned from QR">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="consumerCode">Consumer Code</label>
+                <input type="text" class="form-control" id="consumerCode" placeholder="Enter consumer code">
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="button" class="btn btn-warning btn-register" id="register">Sell to Consumer</button>
+            </div>
+          </form>
         </div>
-        <div class="text-center">
-          <button type="button" class="btn btn-warning btn-register" id="register">Sell to Consumer</button>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- FOOTER -->
- <br><br>
 <div class="footer">
   <p>© 2025 Fake Product Identification | Powered by Blockchain Technology</p>
 </div>
