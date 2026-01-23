@@ -27,9 +27,7 @@ This project addresses the growing issue of counterfeit goods by enabling secure
 
 ## 📸 Demo & Screenshots
 
-[Live Demo](https://fake-product-identification-using.onrender.com)
-
-> *(Optional: Add GIF or screenshot here if available)*
+[Live Demo] https://fake-product-identification-using.onrender.com
 
 ## 📦 Installation & Setup
 
