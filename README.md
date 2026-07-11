@@ -1,4 +1,4 @@
-# 🛡️ Fake Product Identification through Blockchain
+AUTHENTIX–Blockchain Powered Anti-Counterfeit Plateform
 
 A blockchain-powered web application to detect and prevent counterfeit products in the supply chain. This system verifies the authenticity of a product using unique identifiers and QR code scanning, ensuring trust between manufacturers, sellers, and consumers.
 
